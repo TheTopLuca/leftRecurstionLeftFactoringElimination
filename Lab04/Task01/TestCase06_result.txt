@@ -1,0 +1,2 @@
+S : ( S ) S' | a S'
+S' : u S S' | S S' | x S' | epsilon

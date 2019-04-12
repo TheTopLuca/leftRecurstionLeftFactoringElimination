@@ -1,0 +1,3 @@
+S : A a | B b | e
+A : S c | S b S | S S d | b d | A w A | A y | B c
+B : B i | j | A B k | S m

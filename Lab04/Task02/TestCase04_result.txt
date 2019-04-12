@@ -1,0 +1,3 @@
+S : x S'' | a S'
+S' : epsilon | b | c
+S'' : y | z | epsilon

@@ -1,0 +1,59 @@
+  idx = 0
+    while(not allZeros):
+        arrayOfCommonPrefixes =[]
+        for item in finalizedRules:
+            arrayOfKey = finalizedRules[item]
+            currArray = findCommonPrefixes(arrayOfKey[0],arrayOfKey)
+            if(findLengthOfCommonPrefix(currArray)==0):
+                k = 1
+                length = 0
+                while(length<=0 and k<len(arrayOfKey)):
+                    currArray = findCommonPrefixes(arrayOfKey[k],arrayOfKey)
+                    length = findLengthOfCommonPrefix(arrayOfKey[k])
+                    if(length<=0):
+                       k+=1
+                currArray[k]= currArray[getIndexOfANonEmptyCell(currArray)]
+                arrayOfCommonPrefixes.append(currArray)
+            else:
+                currArray[0]=currArray[getIndexOfANonEmptyCell(currArray)]
+                arrayOfCommonPrefixes.append(currArray)
+            #Creation of New Rules Here
+            newRuleSymbol = item + "'"
+            newRuleRightSide = []
+            oldRuleRightSide = []
+            remainingChars = takeCommonFactors(arrayOfKey,currArray)
+            j=0
+            while(j<len(currArray)):
+                if(currArray[j]==""):
+                    oldRuleRightSide.append(arrayOfKey[j])
+                else:
+                    oldRuleRightSide.append(currArray[j]+newRuleSymbol)
+                j+=1
+            print(oldRuleRightSide)
+            for element in remainingChars:
+                if  not element =="":
+                   newRuleRightSide.append(element)
+            print(newRuleRightSide)
+            newGeneratedRules.update({item:oldRuleRightSide})
+            newGeneratedRules.update({newRuleSymbol:newRuleRightSide})
+        #Loop to change new Rules to contain old rules as well as updated ones
+        for key,value in finalizedRules.items():
+            if(not newGeneratedRules.__contains__(key)):
+                newGeneratedRules.update({key:value})
+        finalizedRules = newGeneratedRules
+        allZeros = False
+        bobo = True
+        ijk = 0
+        while(ijk<len(newGeneratedRules)):
+            index = 0
+            key = keyGivenIndex(ijk,newGeneratedRules)
+            currentArray = newGeneratedRules[key]
+            currentString = currArray[index]
+            currArray = findCommonPrefixes(currentString,currentArray)
+            if(not findLengthOfCommonPrefix(currArray)==0):
+                allZeros = False
+                bobo = False
+                break
+            ijk+=1
+        if(bobo):
+            allZeros=True

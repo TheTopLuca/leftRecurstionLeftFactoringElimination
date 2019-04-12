@@ -1,0 +1,5 @@
+S : A a | B b | e
+A : B b c A' | e c A' | B b b S A' | e b S A' | B b S d A' | e S d A' | b d A' | B c A'
+B : j B' | e c A' B k B' | e b S A' B k B' | e S d A' B k B' | b d A' B k B' | e c A' a m B' | e b S A' a m B' | e S d A' a m B' | b d A' a m B' | e m B'
+A' : a c A' | a b S A' | a S d A' | w A A' | y A' | epsilon
+B' : i B' | b c A' B k B' | b b S A' B k B' | b S d A' B k B' | c A' B k B' | b c A' a m B' | b b S A' a m B' | b S d A' a m B' | c A' a m B' | b m B' | epsilon
